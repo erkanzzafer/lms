@@ -1,7 +1,10 @@
 <!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+
 <script src="{{ URL::asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 <!-- plugins-jquery -->
 <script src="{{ URL::asset('assets/js/plugins-jquery.js') }}"></script>
+
 <!-- plugin_path -->
 <script type="text/javascript">
     var plugin_path = "{{ asset('assets/js') }}/";
@@ -56,9 +59,35 @@
     $(document).ready(function() {
         $('#datatable').DataTable();
     })
-</script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-<script type="text/javascript">
-    $('.selectpicker').selectpicker({
-      });
+        $("#grade_select").on("change", function() {
+            var Grade_id = $("#grade_select").val();
+            alert(Grade_id);
+            if (Grade_id) {
+                $.ajax({
+                    method: "POST",
+                    url: "{{ route('section.getClass') }}",
+                    data: {
+                        grade_id: Grade_id
+                    },
+                    success: function(data) {
+                        $('select[name="Class_id"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="class_id"]').append('<option value="' +
+                                key + '">' + value + '</option>');
+                        });
+                    },
+                    error: function(data) {}
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    })
 </script>

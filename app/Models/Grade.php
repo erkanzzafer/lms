@@ -24,4 +24,10 @@ class Grade extends Model
     {
         return $this->classrooms()->count() === 0;
     }
+
+
+    function sections()
+    {
+        return $this->hasMany(Section::class, 'grade_id');
+    }
 }

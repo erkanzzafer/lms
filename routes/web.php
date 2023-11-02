@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SectionController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -34,13 +35,13 @@ Route::middleware('auth')->group(function () {
 
 Route::group(
     [
-        'prefix' => LaravelLocalization::setLocale(),
+        'prefix' => LaravelLocalization::setLocale() . '/dashboard',
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
     ],
     function () {
 
 
-        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
 
         //Grade
@@ -50,6 +51,10 @@ Route::group(
         Route::resource('classroom', ClassroomController::class);
         Route::post('classroom/delete-all', [ClassroomController::class, 'deleteAll'])->name('classroom.deleteAll');
         Route::post('classroom/filter-classes', [ClassroomController::class, 'Filter_Classes'])->name('classroom.filter-classes');
+
+        //sections
+        Route::resource('sections', SectionController::class);
+        Route::post('sections.getClass', [SectionController::class, 'getClass'])->name('section.getClass');
     }
 );
 

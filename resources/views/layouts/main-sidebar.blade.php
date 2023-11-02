@@ -24,16 +24,20 @@
                     <!-- menu title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Menüler </li>
                     <!-- menu item Elements-->
-                    <li >
+                    <li>
                         <a href="{{ route('grade.index') }}" data-toggle="collapse" data-target="#elements">
                             <div class="pull-left"><i class="ti-palette"></i><span
                                     class="right-nav-text">{{ trans('main_trans.Grades') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul class="{{ Route::is('grade.*') ? 'collapse show':'collapse' }}" id="elements" class="collapse" data-parent="#sidebarnav">
-                            <li class="{{ Route::is('grade.index') ? 'active':'' }}" ><a href="{{ route('grade.index') }}">{{ trans('main_trans.Departman Listesi') }}</a></li>
-                            <li class="{{ Route::is('grade.create') ? 'active':'' }}"><a href="{{ route('grade.create') }}">{{ trans('main_trans.Departman Ekle') }}</a></li>
+                        <ul class="{{ Route::is('grade.*') ? 'collapse show' : 'collapse' }}" id="elements"
+                            class="collapse" data-parent="#sidebarnav">
+                            <li class="{{ Route::is('grade.index') ? 'active' : '' }}"><a
+                                    href="{{ route('grade.index') }}">{{ trans('main_trans.Departman Listesi') }}</a>
+                            </li>
+                            <li class="{{ Route::is('grade.create') ? 'active' : '' }}"><a
+                                    href="{{ route('grade.create') }}">{{ trans('main_trans.Departman Ekle') }}</a></li>
                         </ul>
                     </li>
                     <!-- menu item calendar-->
@@ -45,13 +49,14 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{ route('classroom.index') }}">{{ trans('main_trans.Sınıf Listesi') }} </a> </li>
+                            <li> <a href="{{ route('classroom.index') }}">{{ trans('main_trans.Sınıf Listesi') }} </a>
+                            </li>
                         </ul>
                     </li>
                     <!-- menu item todo-->
                     <li>
-                        <a href="todo-list.html"><i class="ti-menu-alt"></i><span class="right-nav-text">Todo
-                                list</span> </a>
+                        <a href="{{ route('sections.index') }}"><i class="ti-menu-alt"></i><span
+                                class="right-nav-text">Sections</span> </a>
                     </li>
                     <!-- menu item chat-->
                     <li>
