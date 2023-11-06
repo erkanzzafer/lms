@@ -48,20 +48,46 @@
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{ route('classroom.index') }}">{{ trans('main_trans.Sınıf Listesi') }} </a>
+                        <ul class="{{ Route::is('classroom.*') ? 'collapse show' : 'collapse' }}" id="calendar-menu"
+                            class="collapse" data-parent="#sidebarnav">
+                            <li class="{{ Route::is('classroom.index') ? 'active' : '' }}"><a
+                                    href="{{ route('classroom.index') }}">{{ trans('main_trans.Sınıf Listesi') }} </a>
                             </li>
                         </ul>
                     </li>
                     <!-- menu item todo-->
                     <li>
-                        <a href="{{ route('sections.index') }}"><i class="ti-menu-alt"></i><span
-                                class="right-nav-text">Sections</span> </a>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-sube">
+                            <div class="pull-left"><i class="ti-menu-alt"></i><span
+                                    class="right-nav-text">Şubeler</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul class="{{ Route::is('sections.*') ? 'collapse show' : 'collapse' }}" classroom
+                            id="sections-sube" class="collapse" data-parent="#sidebarnav">
+                            <li class="{{ Route::is('sections.index') ? 'active' : '' }}"> <a
+                                    href="{{ route('sections.index') }}">Şube Listesi </a>
+                            </li>
+                        </ul>
+
+
+
                     </li>
-                    <!-- menu item chat-->
+                    <!-- add parent-->
                     <li>
-                        <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat
-                            </span></a>
+                        {{--  <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat --}}
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-ogrenci">
+                            <div class="pull-left"><i class="ti-menu-alt"></i><span
+                                    class="right-nav-text">Öğrenciler</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul class="{{ Route::is('add_parent') ? 'collapse show' : 'collapse' }}" classroom
+                            id="sections-ogrenci" class="collapse" data-parent="#sidebarnav">
+                            <li class="{{ Route::is('add_parent') ? 'active' : '' }}"> <a
+                                    href="{{route('add_parent')}}">Öğrenci Listesi </a>
+                            </li>
+                        </ul>
                     </li>
                     <!-- menu item mailbox-->
                     <li>
@@ -101,7 +127,8 @@
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Widgets, Forms & Tables </li>
                     <!-- menu item Widgets-->
                     <li>
-                        <a href="widgets.html"><i class="ti-blackboard"></i><span class="right-nav-text">Widgets</span>
+                        <a href="widgets.html"><i class="ti-blackboard"></i><span
+                                class="right-nav-text">Widgets</span>
                             <span class="badge badge-pill badge-danger float-right mt-1">59</span> </a>
                     </li>
                     <!-- menu item Form-->

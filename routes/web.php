@@ -5,9 +5,9 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +55,12 @@ Route::group(
         //sections
         Route::resource('sections', SectionController::class);
         Route::post('sections.getClass', [SectionController::class, 'getClass'])->name('section.getClass');
+
+        //Add Parent
+        Route::view('add_parent', 'livewire.showForm')->name('add_parent');
+
+        //Teachers
+        Route::get('teachers',[TeacherController::class,'index'])->name('teachers.index');
     }
 );
 
